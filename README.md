@@ -1,5 +1,5 @@
-# Paintttext
-Paintttext
+# PaintTtext
+PaintTtext
 Copyright (C) 2019 anat3000
 
 This program is free software; you can redistribute it and/or
