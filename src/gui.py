@@ -5,7 +5,7 @@ import webbrowser
 from tkinter import *
 from tkinter.messagebox import *
 
-class TttGUI(Tk):
+class TtttGUI(Tk):
     def nondisp(self):
         showerror("En cours de développement...", "Nous y travaillons...")
 
@@ -17,34 +17,38 @@ class TttGUI(Tk):
             root.quit()
 
     def view_changelog(self):
-        menu3.add_command(label="A propos", command=apropos)
-    def __init__(self):
-        #init Tk class
-        super().__init__()
-        #set properties of the window
-        self.iconbitmap("icon.xbm")
-        
-        ##menu bar
+        webbrowser.open_new("https://github.com/anat3000/PaintTtext/blob/master/CHANGELOG")
+
+    def init_menu(self):
+        #menu bar
         menubar = Menu(self)
-        
+
         #file menu
         file_menu = Menu(menubar, tearoff=0)
-        file_menu.add_command(label="Créer", command=nondisp)
-        file_menu.add_command(label="Editer", command=nondisp)
+        file_menu.add_command(label="Créer", command=self.nondisp)
+        file_menu.add_command(label="Editer", command=self.nondisp)
         file_menu.add_separator()
-        file_menu.add_command(label="Quitter", command=askquit)
+        file_menu.add_command(label="Quitter", command=self.askquit)
 
         menubar.add_cascade(label="Fichier", menu=file_menu)
 
         #help menu
         help_menu = Menu(menubar, tearoff=0)
-        help_menu.add_command(label="Changelog", command=apropos)
-        help_menu.add_command(label="À propos", command=changelog)
+        help_menu.add_command(label="Changelog", command=self.view_changelog)
+        help_menu.add_command(label="À propos", command=self.apropos)
 
         menubar.add_cascade(label="Aide", menu=help_menu)
 
         self.config(menu=menubar)
 
-root = TttGUI()
+
+    def __init__(self):
+        #init Tk class
+        super().__init__()
+        #set properties of the window
+        self.iconbitmap("../assets/paintttext.ico")
+
+
+root = TtttGUI()
 root.mainloop()
 exit(0)
