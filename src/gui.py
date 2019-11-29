@@ -18,26 +18,39 @@ class TtttGUI(Tk):
 
     def view_changelog(self):
         webbrowser.open_new("https://github.com/anat3000/PaintTtext/blob/master/CHANGELOG")
+        
+    def open_image(self):
+        file = ledialog.askopenfilename()
+        # TODO : complete this
 
     def init_menu(self):
         #menu bar
         menubar = Menu(self)
 
-        #file menu
-        file_menu = Menu(menubar, tearoff=0)
-        file_menu.add_command(label="Créer", command=self.nondisp)
-        file_menu.add_command(label="Editer", command=self.nondisp)
+        #encode menu
+        encode_menu = Menu(menubar, tearoff=0)
+        file_menu.add_command(label="Delete text", command=self.nondisp)
+        file_menu.add_command(label="Load text", command=self.nondisp)
         file_menu.add_separator()
-        file_menu.add_command(label="Quitter", command=self.askquit)
+        file_menu.add_command(label="Encode text", command=self.askquit)
 
-        menubar.add_cascade(label="Fichier", menu=file_menu)
+        menubar.add_cascade(label="Encode", menu=file_menu)
+        
+        #encode menu
+        encode_menu = Menu(menubar, tearoff=0)
+        file_menu.add_command(label="Delete image", command=self.nondisp)
+        file_menu.add_command(label="Load image", command=self.nondisp)
+        file_menu.add_separator()
+        file_menu.add_command(label="Decode text", command=self.askquit)
+
+        menubar.add_cascade(label="Encode", menu=file_menu)
 
         #help menu
         help_menu = Menu(menubar, tearoff=0)
         help_menu.add_command(label="Changelog", command=self.view_changelog)
         help_menu.add_command(label="À propos", command=self.apropos)
 
-        menubar.add_cascade(label="Aide", menu=help_menu)
+        menubar.add_cascade(label="Help", menu=help_menu)
 
         self.config(menu=menubar)
 
